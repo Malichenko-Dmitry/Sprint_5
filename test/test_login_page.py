@@ -1,14 +1,7 @@
 import time
-import random
-import string
 from selenium import webdriver
 from locators import Locators
-
-
-def generate_random_string(length=8):
-    letters = string.ascii_letters
-    return ''.join(random.choice(letters) for i in range(length))
-
+import helpers
 
 def test_login_via_main_page():
     driver = webdriver.Chrome()
@@ -29,7 +22,7 @@ def test_login_via_personal_account_button():
     try:
         driver.get("https://stellarburgers.nomoreparties.site/")
         driver.implicitly_wait(10)
-        driver.find_element(*Locators.personal_account_button_1).click()
+        driver.find_element(*Locators.personal_account_button).click()
         driver.find_element(*Locators.field_email).send_keys("dima199768@gmail.com")
         driver.find_element(*Locators.password_field).send_keys("123456789")
         driver.find_element(*Locators.login_button).click()
@@ -43,11 +36,11 @@ def test_registration_and_login():
     try:
         driver.get("https://stellarburgers.nomoreparties.site/")
         driver.implicitly_wait(10)
-        driver.find_element(*Locators.personal_account_button_1).click()
+        driver.find_element(*Locators.personal_account_button).click()
         driver.find_element(*Locators.register).click()
-        random_name = generate_random_string()
-        random_email = f"{generate_random_string()}@example.com"
-        random_password = generate_random_string(length=12)
+        random_name = helpers.generate_random_string()
+        random_email = f"{helpers.generate_random_string()}@example.com"
+        random_password = helpers.generate_random_string(length=12)
         driver.find_element(*Locators.name_registration).send_keys(random_name)
         driver.find_element(*Locators.email_registration).send_keys(random_email)
         driver.find_element(*Locators.password_registration).send_keys(random_password)
@@ -63,7 +56,7 @@ def test_password_recovery():
     try:
         driver.get("https://stellarburgers.nomoreparties.site/")
         driver.implicitly_wait(10)
-        driver.find_element(*Locators.personal_account_button_1).click()
+        driver.find_element(*Locators.personal_account_button).click()
         recovery_link = driver.find_element(*Locators.password_recovery)
         recovery_link.click()
         email_input = driver.find_element(*Locators.email_password_recovery)
