@@ -54,3 +54,8 @@ class Locators:
 
     beef_meteorite = By.XPATH, "//p[text()='Говяжий метеорит (отбивная)']"  # "Говяжий метеорит(отбивная)"
 
+    active_section_sauces = By.XPATH, "//span[.='Соусы']/parent::div" # активное состояние кнопки "Соусы" при табе
+
+    active_bun_section = By.XPATH, "//span[.='Булки']/parent::div" # активное состояние кнопки "Булочки" при табе
+
+    active_filling_section = By.XPATH, "//span[text()='Начинки']/parent::div" # активное состояние кнопки "Начинки" при табе
